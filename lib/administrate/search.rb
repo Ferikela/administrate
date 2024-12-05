@@ -111,9 +111,12 @@ module Administrate
     end
 
     def search_results(resources)
-      resources
+      res = resources
         .left_joins(tables_to_join)
-        .where(query_template, *query_values)
+      if query_values.any? { _1 != "%%"}
+        res = res.where(query_template, *query_values)
+      end
+      res
     end
 
     def valid_filters
