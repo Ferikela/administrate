@@ -4,7 +4,7 @@ module Administrate
 
     class << self
       def resource_name(_opts)
-        t("administrate.navigation.custom.#{named_resource.pluralize}")
+        I18n.t("administrate.navigation.custom.#{named_resource.pluralize}")
         # named_resource.pluralize.titleize
       end
 
