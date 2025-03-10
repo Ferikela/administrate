@@ -5,7 +5,7 @@ module Administrate
     end
 
     def dashboard_class
-      ActiveSupport::Inflector.constantize("#{resource_class_name}Dashboard")
+      ActiveSupport::Inflector.constantize(dashboard_class_name)
     end
 
     def namespace
@@ -25,6 +25,12 @@ module Administrate
     end
 
     private
+
+    def dashboard_class_name
+      name = [namespace.to_s.camelize, "#{resource_class_name}Dashboard"].compact.join('::')
+      return name if Object.const_defined?(name)
+      "#{resource_class_name}Dashboard"
+    end
 
     def resource_class_name
       model_path_parts.join("::")

@@ -23,7 +23,7 @@ module Administrate
 
     class << self
       def model
-        to_s.chomp(DASHBOARD_SUFFIX).classify.constantize
+        to_s.chomp(DASHBOARD_SUFFIX).split('::').last.classify.constantize
       end
 
       def resource_name(opts)
