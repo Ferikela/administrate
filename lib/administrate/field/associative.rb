@@ -53,7 +53,11 @@ module Administrate
       private
 
       def associated_dashboard
-        "#{associated_class_name}Dashboard".constantize.new
+        if option_given?(:dashboard)
+          options.fetch(:dashboard).new
+        else
+          "#{associated_class_name}Dashboard".constantize.new
+        end
       end
 
       def primary_key

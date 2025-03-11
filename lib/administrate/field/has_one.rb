@@ -39,7 +39,7 @@ module Administrate
 
       def nested_show
         @nested_show ||= Administrate::Page::Show.new(
-          resolver.dashboard_class.new,
+          associated_dashboard,
           data || resolver.resource_class.new
         )
       end
